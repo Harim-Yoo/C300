@@ -27,19 +27,21 @@ main:
 	mov	eax, 0 # no floating value. 
 	call	printf@PLT
 
-	mov	rax, QWORD PTR j[rip] # 8 byte pointer 
-	mov	rdi, rax
-	call	puts@PLT
-	mov	rax, QWORD PTR j[rip]
-	movzx	eax, BYTE PTR [rax]
-	movsx	eax, al
-	mov	esi, eax
-	lea	rax, .LC1[rip]
-	mov	rdi, rax
-	mov	eax, 0
-	call	printf@PLT
-	nop
-	pop	rbp
+	mov	rax, QWORD PTR j[rip] # Go to addess at j, store that address to rax. 
+	mov	rdi, rax # put rax to first params already?
+	call	puts@PLT #Now, we skip printf??? We just put string directly? Compiler thing??
+	
+	mov	rax, QWORD PTR j[rip] # Get the address, store the address. 
+	movzx	eax, BYTE PTR [rax] # Go to that address and get the first value!!!! THIS IS H!!!!!! Move with zero extend. Since H is 1 byte char, we put it in 4-byte eax and fill the upper bits with 0. This is what we call as Move with Zero Extend. 
+
+	movsx	eax, al # The value stored in al(rax->eax->ax->al), which is 'H', will be safely converted to int (4-bytes) by Sign Extend. If this is positive int, then put everything 0 in upper bits. Otherwise, put 1 in the upper bits. 
+	mov	esi, eax # Put that in second params.
+	lea	rax, .LC1[rip] # Load Effective Address of LC1 HELLO address.
+	mov	rdi, rax # Store that thing in rdi
+	mov	eax, 0 # No float-argument
+	call	printf@PLT # Call printf.
+	nop # No operation because this is void.
+	pop	rbp # We pop rbp, because we did not move rsp down. Interesting....
 	ret
 	.size	main, .-main
 	.ident	"GCC: (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
