@@ -26,20 +26,20 @@ main:
 	call	__isoc99_scanf@PLT
 	mov	eax, DWORD PTR -4[rbp]
 	cmp	eax, 89
-	jle	.L2
-	mov	edi, 65
+	jle	.L2 // Go to the next if check.
+	mov	edi, 65 // Printing "A"
 	call	putchar@PLT
 	jmp	.L5
 .L2:
 	mov	eax, DWORD PTR -4[rbp]
 	cmp	eax, 79
-	jle	.L4
-	mov	edi, 66
+	jle	.L4 // Go to the last else
+	mov	edi, 66 // Printing "B"
 	call	putchar@PLT
 	jmp	.L5
 .L4:
 	mov	edi, 67
-	call	putchar@PLT
+	call	putchar@PLT // After .L4, do we go straight downward?
 .L5:
 	nop
 	leave
