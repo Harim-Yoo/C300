@@ -17,7 +17,7 @@ main:
 	mov	DWORD PTR -4[rbp], 0
 	lea	rax, .LC0[rip]
 	mov	rdi, rax
-	call	print
+	call	print // returned len in eax because len is 4-byte.
 	mov	DWORD PTR -4[rbp], eax
 	mov	eax, DWORD PTR -4[rbp]
 	mov	esi, eax
@@ -50,12 +50,12 @@ print:
 .L3:
 	mov	rax, QWORD PTR -24[rbp]
 	movzx	eax, BYTE PTR [rax]
-	test	al, al
+	test	al, al // Zero Flag. 
 	jne	.L4
-	mov	edi, 33
-	call	putchar@PLT
-	mov	edi, 10
-	call	putchar@PLT
+	mov	edi, 33 // '!'=33;
+	call	putchar@PLT // putchar('!');
+	mov	edi, 10 // '\n'=10;
+	call	putchar@PLT // putchar('\n');
 	mov	eax, DWORD PTR -4[rbp]
 	leave
 	ret
