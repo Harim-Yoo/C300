@@ -1,10 +1,20 @@
 # C300
 
-Getting used to C from scratch. Following instructions and examples in the book called "초보자를 위한 C언어 300제" written by 김은철. (Kudos to the author!)
+## What I am doing in this repo
 
-I am using GCC compiler to run programs written in C, and I am also using the basic examples for study materials to read Assembly code.
+Getting used to C from scratch. Following instructions and examples in the book called **초보자를 위한 C언어 300제** written by 김은철. (Kudos to the author!)
+
+I am using GCC compiler to run programs written in C, and I am also using some of the basic examples for study materials to read Assembly code.
 
 I currently use intel syntax(```-masm=intel```).
+
+```gcc -S -O0 -fno-asynchronous-unwind-tables -fno-stack-protector -masm=intel FILENAME.c```
+
+- -S means, "stop after writing assembly code."
+- -O0 means, no optimization done.
+- -fno-stack-protector or -fno-asynchronous-unwind-tables means, get rid of unnecessary metadata.
+
+## Types of Lines
 
 There are four types of lines
 
@@ -22,6 +32,8 @@ The instruction follows the following steps.
 ex) instruction - destination - start
 mov eax, 5 # In plain C code, eax = 5;
 
+## Common Operands
+
 There are three operands - number, register, memory
 
 Numbers are plain-old numbers.
@@ -32,6 +44,7 @@ Registers have different names per sizes. If it starts with **r**, then it's a 8
 - eax : lower 4 bytes
 - rdi : the first param of the function
 - rsi : the second param of the function
+- edx : the third param, if there is any
 - rax/eax : the return value (or for place-holder) : Accumulator
 - rbp : the current pointer of my function (for local constant position calculation) : Base Pointer
 - rsp : the end of current stack : Stack Pointer
@@ -44,12 +57,9 @@ There are three words for memory:
 
 Examples:
 - mov a, b # a = b
-- lea a, name # a = &name
+- lea a, name # a = &name // lea stands for load effective address.
 - sub a, b # a= a-b
-- push a # store a in the stack
-- call fn # fn()
+- push a # store a in the stack // Have not seen this yet much.
+- call fn # fn() // normally the return values are stored in eax or rax depending on the size of it.
 - leave # roll back what was ready when function call.
 - ret # return;
-
-
-
