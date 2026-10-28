@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
     
     while (bytes_read > 0) {
       write(1,buffer, bytes_read);
-      bytes_read = read(fd, buffer, sizeof(buffer));
+      bytes_read = read(0, buffer, sizeof(buffer));
     }
     
     if (bytes_read == -1) {
