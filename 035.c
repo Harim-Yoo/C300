@@ -7,10 +7,10 @@ make rename
 int main(int argc, char *argv[]) {
   if (argc ==1) {
     char *err_msg = "No input found.\n";
-    while (*err_msg != '\0') {
-      putchar(*err_msg);
-      err_msg++;      
-    }
+    while(*err_msg !='\0') {
+      fputc(*err_msg, stderr);
+      err_msg++;
+    }    
     return 1;
   }
   else if (argc == 3) {
@@ -19,8 +19,8 @@ int main(int argc, char *argv[]) {
 
     if (rename(old_path, new_path) == -1) {
       char *fail_msg = "Rename failed.\n";
-      while (*fail_msg != '\0') {
-        putchar(*fail_msg);
+      while (*fail_msg !='\0') {
+        fputc(*fail_msg, stderr);
         fail_msg++;
       }
       return 1;
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
   else {
     char *final_err = "Something went wrong.\n";
     while (*final_err != '\0') {
-      putchar(*final_err);
+      fputc(*final_err, stderr);
       final_err++;
     }
     return 1;
