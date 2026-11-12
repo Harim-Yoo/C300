@@ -49,8 +49,14 @@ void main() {
 
   printf("\n");
 
+  /*
   for (int j=0;j<100;j++) {
     printf("%c",pop());
+  }
+  */
+
+  while (!is_empty()) {
+    putchar(pop());
   }
   printf("\n");
 
