@@ -54,7 +54,9 @@ Registers have different names per sizes. If it starts with **r**, then it's a 8
 - rsp : the end of current stack : Stack Pointer
 
 Params are plugged in, according to the following order.
-- rdi, rsi, rdx, rcs, r8, r9.
+
+- rdi, rsi, rdx, rcx, r8, r9.
+Here, rcx is the same rcx in the GCC symbol explanation. Normally, this is where rip is stored.
 
 There are three words for memory:
 
@@ -70,3 +72,16 @@ Examples:
 - call fn # fn() // normally the return values are stored in eax or rax depending on the size of it.
 - leave # roll back what was ready when function call.
 - ret # return;
+
+# GCC Symbol
+
+- "a" : rax
+- "b" : rbx
+- "c" : rcx
+- "d" : rdx
+- "S" : rsi
+- "D" : rdi
+
+Inside the 64-bit CPU, we have rax, rbx, rcx, rdx, rsi, rdi, rbp, rsp, r8, r9, r10, r11, r12, r13, r14, r15. There are 16 registers.
+
+I
