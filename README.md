@@ -2,7 +2,11 @@
 
 ## What I am doing in this repo
 
-Getting used to C from scratch. Following instructions and examples in the book called **초보자를 위한 C언어 300제** written by 김은철. (Kudos to the author!)
+Getting used to C from scratch. I originally followed one of the Korean books I bought in the bookstore, but as I study more of it, it is simply just an explanation of libc, which I don't get help much about. So, I have switched to studying in different modes.
+
+> First, I find syscall for each libc function that I would normally use.
+> I write codes that are similar to syscall-wrappers.
+> See how it works, and move on.
 
 I am using GCC compiler to run programs written in C, and I am also using some of the basic examples for study materials to read Assembly code.
 
@@ -40,7 +44,7 @@ Numbers are plain-old numbers.
 
 Registers have different names per sizes. If it starts with **r**, then it's a 8-byte register. Else, it is a 4-byte register.
 
-- rax : whole 8 bytes
+- rax : whole 8 bytes. Normally, this is the return value for a function call. But, when we do the syscall, this is the syscall number.
 - eax : lower 4 bytes
 - rdi : the first param of the function
 - rsi : the second param of the function
@@ -48,6 +52,9 @@ Registers have different names per sizes. If it starts with **r**, then it's a 8
 - rax/eax : the return value (or for place-holder) : Accumulator
 - rbp : the current pointer of my function (for local constant position calculation) : Base Pointer
 - rsp : the end of current stack : Stack Pointer
+
+Params are plugged in, according to the following order.
+- rdi, rsi, rdx, rcs, r8, r9.
 
 There are three words for memory:
 
