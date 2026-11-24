@@ -56,22 +56,25 @@ int str_len(const char *expr) {
 char reverse_polish_notation(const char *expr) {
 
   init_stack();
-  char result;
   while (*expr != '\0') {
-    if (*expr == '+') {
-      element first = pop();
-      element second = pop();
-      
-      result = (char)(first+second);
-      push((element)result);
-    } else if (*expr == '-') {
-      element first = pop();
-      element second = pop();
-      result = (char)(second-first);
-      push((element)result);
-    } else {
-    push(*expr - '0');
+    switch (*expr) {
+      case '+' : {
+        element second = pop();
+        element first = pop();
+        push((element)(first+second));
+        break;
+      }
+      case '-' : {
+        element second = pop();
+        element first = pop();
+        push((element)(first-second));
+        break;
+      }
+      default : {
+        push(*expr - '0');
+      }
     }
+    
     expr++;
   }
   return pop();
